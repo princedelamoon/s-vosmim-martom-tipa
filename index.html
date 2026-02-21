@@ -12,7 +12,21 @@ body {
     font-family: Consolas, monospace;
     padding: 20px;
 }
+.six-seven{
+    max-width: 90vw;      /* aisultan top */
+    max-height: 60vh;     /* aisultantop */
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 40px red;
+    animation: popIn 1.2s ease;
+}
 
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.7); }
+    to   { opacity: 1; transform: scale(1); }
+}
 #terminal {
     max-width: 900px;
     margin: auto;
@@ -51,7 +65,7 @@ button {
 <div id="terminal"></div>
 
 <div style="text-align:center;">
-    <button id="stopBtn" class="hidden">❌ ОСТАНОВИТЬ</button>
+    <button id="stopBtn" class="hidden">❌ АСТАНАВИС БЕби</button>
 </div>
 
 <div id="reveal" class="hidden">
@@ -60,7 +74,7 @@ button {
     <h1>💐 8 мартыңызбен 💐</h1>
     <p>данныйларыңызды мошенниктерге(өзіме) беріп жібердім!❤️</p><sub>holy vibe code🥀</sub>
     <p><b>Себепсіз, себеп-сіз</b></p>
-    <img src="sigmamaleinparis.jpg" alt="sigma male in paris greeting you with 8 march and kinda looks like austrian painter">
+    <img src="sigmamaleinparis.jpg" class ="six-seven" alt="sigma male in paris greeting you with 8 march and kinda looks like austrian painter">
 </div>
 
 <script>
