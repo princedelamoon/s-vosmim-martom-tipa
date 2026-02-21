@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>System Security Update</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: #00ff00;
+    font-family: Consolas, monospace;
+    padding: 20px;
+}
+
+#terminal {
+    max-width: 900px;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.red { color: red; }
+.hidden { display: none; }
+
+button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+#reveal {
+    text-align: center;
+    color: white;
+    animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="terminal"></div>
+
+<div style="text-align:center;">
+    <button id="stopBtn" class="hidden">❌ ОСТАНОВИТЬ</button>
+</div>
+
+<div id="reveal" class="hidden">
+    <h1 class="red">😈 ТРОЯН УСТАНОВЛЕН</h1>
+    <h2> деее </h2>
+    <h1>💐 8 мартыңызбен 💐</h1>
+    <p>данныйларыңызды мошенниктерге(өзіме) беріп жібердім!❤️</p><sub>holy vibe code🥀</sub>
+    <p><b>Себепсіз, себеп-сіз</b></p>
+</div>
+
+<script>
+// ====== FAKE TERMINAL ======
+const terminal = document.getElementById("terminal");
+const stopBtn = document.getElementById("stopBtn");
+const reveal = document.getElementById("reveal");
+
+const lines = [
+    "Подключение к удалённому серверу...",
+    "IP обнаружен.",
+    "Обход системы безопасности...",
+    "Root-доступ получен.",
+    "Загрузка вредоносных модулей...",
+    "Инициализация трояна...",
+];
+
+let index = 0;
+
+// ====== BEEP SOUND ======
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function beep() {
+    const osc = audioCtx.createOscillator();
+    osc.type = "square";
+    osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+    osc.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.1);
+}
+
+// ====== TYPE EFFECT ======
+function typeLine() {
+    if (index < lines.length) {
+        terminal.innerHTML += lines[index] + "<br>";
+        beep();
+        index++;
+        setTimeout(typeLine, 900);
+    } else {
+        install();
+    }
+}
+
+// ====== INSTALL FAKE ======
+function install() {
+    let percent = 0;
+    stopBtn.classList.remove("hidden");
+
+    const interval = setInterval(() => {
+        terminal.innerHTML += "Установка трояна: " + percent + "%<br>";
+        beep();
+        percent += Math.floor(Math.random() * 15) + 5;
+
+        if (percent >= 100) {
+            clearInterval(interval);
+            countdown();
+        }
+    }, 700);
+}
+
+// ====== COUNTDOWN ======
+function countdown() {
+    let time = 10;
+    const timer = setInterval(() => {
+        terminal.innerHTML += `<span class="red">Удаление данных через ${time} секунд...</span><br>`;
+        beep();
+        time--;
+
+        if (time < 0) {
+            clearInterval(timer);
+            finish();
+        }
+    }, 1000);
+}
+
+// ====== FINAL REVEAL ======
+function finish() {
+    terminal.classList.add("hidden");
+    stopBtn.classList.add("hidden");
+    reveal.classList.remove("hidden");
+}
+
+// ====== FAKE STOP BUTTON ======
+stopBtn.onclick = () => {
+    terminal.innerHTML += "<span class='red'>ОШИБКА: процесс не может быть остановлен</span><br>";
+    beep();
+};
+
+// START
+setTimeout(typeLine, 800);
+</script>
+
+</body>
+</html>
